@@ -59,7 +59,7 @@ restService.post("/hit", function(req, res) {
   // Get the city and date from the request
   let city = req.body.result.parameters['geo-city']; // city is a required param
   // Get the date for the weather forecast (if present)
-  let date = 'today';
+  let date = '';
   if (req.body.result.parameters['date']) {
     date = req.body.result.parameters['date'];
     console.log('Date: ' + date);
@@ -96,7 +96,8 @@ function callWeatherApi (city, date) {
         let output = `Current conditions in the ${location['type']} 
         ${location['query']} are ${currentConditions} with a projected high of
         ${forecast['maxtempC']}°C or ${forecast['maxtempF']}°F and a low of 
-        ${forecast['mintempC']}°C or ${forecast['mintempF']}°F.`;
+        ${forecast['mintempC']}°C or ${forecast['mintempF']}°F on 
+        ${forecast['date']}.`;
         // Resolve the promise with the output text
         console.log(output);
         resolve(output);
