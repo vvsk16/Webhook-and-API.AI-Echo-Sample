@@ -42,10 +42,6 @@ restService.post("/echo", function(req, res) {
   });
 });
 
-restService.listen(process.env.PORT || 8000, function() {
-  console.log("Server up and listening");
-});
-
 
 const host = 'api.worldweatheronline.com';
 const wwoApiKey = 'fcc61073345244a3acf205900182503';
@@ -68,7 +64,7 @@ restService.post("/hit", function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ 'speech': error, 'displayText': error }));
   });
-};
+});
 function callWeatherApi (city, date) {
   return new Promise((resolve, reject) => {
     // Create the path for the HTTP request to get the weather
@@ -101,3 +97,9 @@ function callWeatherApi (city, date) {
     });
   });
 }
+
+
+restService.listen(process.env.PORT || 8000, function() {
+  console.log("Server up and listening");
+});
+
