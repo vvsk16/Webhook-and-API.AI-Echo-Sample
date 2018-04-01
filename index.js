@@ -35,7 +35,16 @@ restService.post("/echo", function(req, res) {
     req.body.result.parameters.echoText
       ? req.body.result.parameters.echoText
       : "Seems like some problem. Speak again.";
-  console.log(speech);
+  // Get the city and date from the request
+  var city = req.body.result.parameters['geo-city']; // city is a required param
+  // Get the date for the weather forecast (if present)
+  let date = 'today';
+  if (req.body.result.parameters['date']) {
+    date = req.body.result.parameters['date'];
+    console.log('Date: ' + date);
+  }
+  speech = city;
+  console.log('speech: '+ speech);
   return res.json({
     speech: speech,
     displayText: speech,
@@ -101,6 +110,6 @@ function callWeatherApi (city, date) {
 
 
 restService.listen(process.env.PORT || 8000, function() {
-  console.log("Server up and listening");
+  console.log("hi, Server up and listening");
 });
 
