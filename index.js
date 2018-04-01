@@ -49,7 +49,7 @@ restService.listen(process.env.PORT || 8000, function() {
 
 const host = 'api.worldweatheronline.com';
 const wwoApiKey = 'fcc61073345244a3acf205900182503';
-exports.weatherWebhook = (req, res) => {
+restService.post("/hit", function(req, res) {
   // Get the city and date from the request
   let city = req.body.result.parameters['geo-city']; // city is a required param
   // Get the date for the weather forecast (if present)
