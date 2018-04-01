@@ -42,6 +42,10 @@ restService.post("/echo", function(req, res) {
   });
 });
 
+restService.listen(process.env.PORT || 8000, function() {
+  console.log("Server up and listening");
+});
+
 
 const host = 'api.worldweatheronline.com';
 const wwoApiKey = 'fcc61073345244a3acf205900182503';
