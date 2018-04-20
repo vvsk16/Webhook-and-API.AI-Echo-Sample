@@ -53,6 +53,23 @@ restService.post("/echo", function(req, res) {
 });
 
 
+
+restService.post("/repeat", function(req, res) {
+  var speech =
+    req.body.result &&
+    req.body.result.parameters &&
+    req.body.result.parameters.echoText
+      ? req.body.result.parameters.echoText
+      : "Seems like some problem. Speak again.";
+  return res.json({
+    speech: speech,
+    displayText: speech,
+    source: "webhook-echo-sample"
+  });
+});
+
+
+
 const host = 'api.worldweatheronline.com';
 const wwoApiKey = 'fcc61073345244a3acf205900182503';
 restService.post("/hit", function(req, res) {
